@@ -1,0 +1,27 @@
+{
+  "name": "react-drag-elements",
+  "version": "0.1.0",
+  "description": "Snappy & efficient React Hook to update the order of lists by dragging items around.",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "rm -rf ./lib && tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/timc1/react-drag-elements.git"
+  },
+  "author": "Tim Chang <timchang.tcc@gmail.com> (https://timchang.dev)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/timc1/react-drag-elements/issues"
+  },
+  "homepage": "https://github.com/timc1/react-drag-elements#readme",
+  "devDependencies": {
+    "@types/react": "^16.8.6",
+    "@types/react-dom": "^16.8.2",
+    "react": "^16.8.3",
+    "react-dom": "^16.8.3",
+    "typescript": "^3.3.3333"
+  }
+}
