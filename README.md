@@ -87,11 +87,11 @@ export default function App() {
 ## Example
 
 ```
-git clone git@github.com:timc1/react-draggable-items.git
+git clone git@github.com:timc1/react-drag-elements.git
 ```
 
 ```
-cd react-draggable-items/example
+cd react-drag-elements/example
 ```
 
 ```
