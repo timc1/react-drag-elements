@@ -5,7 +5,7 @@
   📱🕹
 </h1>
 <p align="center" style="font-size: 1.5rem;">
-  Snappy & efficient React Hook to update the order of lists by dragging items around.
+  A light weight and efficient Hook that make DOM elements draggable & reorganizable.
 </p>
 
 ## About
