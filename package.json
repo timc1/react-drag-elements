@@ -1,6 +1,6 @@
 {
   "name": "react-drag-elements",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Snappy & efficient React Hook to update the order of lists by dragging items around.",
   "main": "lib/index.js",
   "scripts": {
