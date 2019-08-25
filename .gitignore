@@ -5,6 +5,7 @@ dist
 .opt-out
 .DS_Store
 .eslintcache
+.vscode
 *.swp
 *.swo
 

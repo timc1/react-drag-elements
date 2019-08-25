@@ -69,7 +69,7 @@ export default function useDraggableItems({
     }))
   }, [items])
 
-  const animate = debounce(() => {
+  const animate = debounce((coords: Coords) => {
     if (!isAnimating) {
       isAnimating = true
       animationId = requestAnimationFrame(animate)
@@ -93,17 +93,14 @@ export default function useDraggableItems({
             left,
             right,
             bottom,
-            width,
           } = currentLoopItem.node.getBoundingClientRect()
 
-          const halfWidth = width / 2
-
-          // Checks if currentTarget and currentLoopItem are intersecting at least 50%.
+          // Checks if currentTarget and mouse position is intersecting
           if (
-            oTop <= bottom &&
-            oBottom >= top &&
-            oLeft <= right - halfWidth &&
-            oRight >= left + halfWidth
+            coords.y <= bottom &&
+						coords.y >= top &&
+						coords.x <= right &&
+						coords.x >= left
           ) {
             if (!isTransitioning) {
               isTransitioning = true
@@ -224,7 +221,10 @@ export default function useDraggableItems({
     currentTarget.node.style.transition = `none`
     currentTarget.node.style.zIndex = `1`
 
-    animate()
+    animate({
+			x: clientX,
+			y: clientY
+		});
   }
 
   const getItemProps = (id: string) => {
@@ -307,6 +307,11 @@ type ReducerAction = {
   payload: any
 }
 
+type Coords = {
+	x: number;
+	y: number;
+};
+
 const reducer = (state: ReducerState, action: ReducerAction) => {
   switch (action.type) {
     case 'UPDATE_ORDER':
@@ -336,18 +341,22 @@ function clone(arr: any[]) {
   return clonedCopy
 }
 
-function debounce(func: () => void, wait: number, immediate?: boolean) {
-  let timeout: any
-  return function(this: any) {
-    const context = this,
-      args: any = arguments
-    const later = function() {
-      timeout = null
-      if (!immediate) func.apply(context, args)
-    }
-    const callNow = immediate && !timeout
-    clearTimeout(timeout)
-    timeout = setTimeout(later, wait)
-    if (callNow) func.apply(context, args)
+function debounce(
+    func: (args: any) => void, 
+    wait: number, 
+    immediate?: boolean
+  ): (args: any) => void {
+    let timeout: any
+    return function(this: any) {
+      const context = this,
+        args: any = arguments
+      const later = function() {
+        timeout = null
+        if (!immediate) func.apply(context, args)
+      }
+      const callNow = immediate && !timeout
+      clearTimeout(timeout)
+      timeout = setTimeout(later, wait)
+      if (callNow) func.apply(context, args)
   }
 }
